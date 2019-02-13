@@ -6,11 +6,20 @@ import { graphql } from "react-apollo";
 import AuthForm from "./AuthForm";
 
 class LoginForm extends Component {
+  onSubmit({ email, password }) {
+    this.props.mutate({
+      variables: {
+        email,
+        password
+      }
+    });
+  }
+
   render() {
     return (
       <div>
         <h3>Login</h3>
-        <AuthForm />
+        <AuthForm onSubmit={this.onSubmit.bind(this)} />
       </div>
     );
   }
